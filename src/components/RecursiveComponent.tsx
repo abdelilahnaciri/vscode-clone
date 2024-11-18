@@ -6,14 +6,15 @@ import RenderFileIcon from "./RenderFileIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenedFiles } from "../app/features/fileTreeSlice";
 import { RootState } from "../app/store";
+import { doesFileObjExist } from "../utils/functions";
 
 interface IProps {
   fileTree: IFile;
 }
 
 const RecursiveComponent = ({ fileTree }: IProps) => {
-  const { isFolder, name, children } = fileTree;
-  const [isOpen, setIsOpen] = useState(true);
+  const { id, isFolder, name, children } = fileTree;
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const { openedFiles } = useSelector((state: RootState) => state.tree);
   const dispatch = useDispatch();
@@ -21,6 +22,11 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
   // ** Handlers
   const toggle = () => {
     setIsOpen((prev) => !prev);
+  };
+  const onFileClicked = () => {
+    const exists = doesFileObjExist(openedFiles, id);
+    if (exists) return;
+    dispatch(setOpenedFiles([...openedFiles, fileTree]));
   };
   // console.log("File Before JSX:", name);
   return (
@@ -38,10 +44,7 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
             <span className="ml-2">{name}</span>
           </div>
         ) : (
-          <div
-            className="flex items-center mr-2"
-            onClick={() => dispatch(setOpenedFiles([...openedFiles, fileTree]))}
-          >
+          <div className="flex items-center mr-2" onClick={onFileClicked}>
             <RenderFileIcon filename={name} />
             <span className="ml-2">{name}</span>
           </div>
