@@ -16,8 +16,20 @@ export const fileTree: IFile = {
       ],
     },
     {
-      name: "index.html",
-      isFolder: false,
+      name: "public",
+      isFolder: true,
+      children: [{ name: "index.html", isFolder: false }],
+    },
+    {
+      name: "src",
+      isFolder: true,
+      children: [
+        {
+          name: "components",
+          isFolder: true,
+          children: [{ name: "Button.tsx", isFolder: false }],
+        },
+      ],
     },
   ],
 };

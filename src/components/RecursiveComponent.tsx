@@ -25,7 +25,11 @@ const RecursiveComponent = ({
           <div className="flex items-center" onClick={toggle}>
             {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
             {/* <FolderIcon /> */}
-            <RenderFileIcon filename={name} />
+            <RenderFileIcon
+              filename={name}
+              isFolder={isFolder}
+              isOpen={isOpen}
+            />
             <span className="ml-2">{name}</span>
           </div>
         ) : (
