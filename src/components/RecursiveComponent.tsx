@@ -4,7 +4,10 @@ import BottomArrowIcon from "./SVG/Bottom";
 import RightArrowIcon from "./SVG/Right";
 import RenderFileIcon from "./RenderFileIcon";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenedFilesAction } from "../app/features/fileTreeSlice";
+import {
+  setActiveTabIdAction,
+  setOpenedFilesAction,
+} from "../app/features/fileTreeSlice";
 import { RootState } from "../app/store";
 import { doesFileObjExist } from "../utils/functions";
 
@@ -27,6 +30,7 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
     const exists = doesFileObjExist(openedFiles, id);
     if (exists) return;
     dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
+    dispatch(setActiveTabIdAction(id));
   };
   // console.log("File Before JSX:", name);
   return (

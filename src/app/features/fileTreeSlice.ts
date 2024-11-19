@@ -7,11 +7,13 @@ interface IClickedFile {
 }
 
 interface IInitialState {
+  activeTabId: string | null;
   openedFiles: IFile[];
   clickedFile: IClickedFile;
 }
 
 const initialState: IInitialState = {
+  activeTabId: null,
   openedFiles: [],
   clickedFile: {
     filename: "",
@@ -28,12 +30,17 @@ export const fileTreeSlice = createSlice({
       state.openedFiles = action.payload;
     },
     setClickedFileAction: (state, action: PayloadAction<IClickedFile>) => {
-      state.clickedFile.filename = action.payload.filename;
-      state.clickedFile.fileContent = action.payload.fileContent;
+      state.clickedFile = action.payload;
+    },
+    setActiveTabIdAction: (state, action: PayloadAction<string>) => {
+      state.activeTabId = action.payload;
     },
   },
 });
 
-export const { setOpenedFilesAction, setClickedFileAction } =
-  fileTreeSlice.actions;
+export const {
+  setOpenedFilesAction,
+  setClickedFileAction,
+  setActiveTabIdAction,
+} = fileTreeSlice.actions;
 export default fileTreeSlice.reducer;
