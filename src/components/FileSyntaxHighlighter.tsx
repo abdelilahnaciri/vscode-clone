@@ -10,7 +10,10 @@ const FileSyntaxHighlighter = ({ content }: IProps) => {
     <SyntaxHighlighter
       language="javascript"
       style={dracula}
-      customStyle={{ backgroundColor: "transparent" }}
+      customStyle={{
+        backgroundColor: "transparent",
+        height: "calc(100vh - 50px)",
+      }}
       showLineNumbers
     >
       {String(content ? content : "")}
