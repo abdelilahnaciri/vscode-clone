@@ -12,6 +12,7 @@ const OpenedFilesBar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const { openedFiles } = useSelector((state: RootState) => state.tree);
+
   return (
     <div className="w-full">
       <div
