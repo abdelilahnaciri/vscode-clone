@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import OpenedFilesBarTab from "./OpenedFilesBarTab";
+import FileSyntaxHighlighter from "./FileSyntaxHighlighter";
 
 const OpenedFilesBar = () => {
   const { openedFiles, clickedFile } = useSelector(
@@ -13,7 +14,7 @@ const OpenedFilesBar = () => {
           <OpenedFilesBarTab key={file.id} file={file} />
         ))}
       </div>
-      {clickedFile.fileContent}
+      <FileSyntaxHighlighter content={clickedFile.fileContent} />
     </div>
   );
 };

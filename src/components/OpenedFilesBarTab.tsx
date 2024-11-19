@@ -2,10 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IFile } from "../interfaces";
 import RenderFileIcon from "./RenderFileIcon";
 import CloseIcon from "./SVG/CloseIcon";
-import {
-  setActiveTabIdAction,
-  setClickedFileAction,
-} from "../app/features/fileTreeSlice";
+import { setClickedFileAction } from "../app/features/fileTreeSlice";
 import { RootState } from "../app/store";
 
 interface IProps {
@@ -13,14 +10,21 @@ interface IProps {
 }
 
 const OpenedFilesBarTab = ({ file }: IProps) => {
-  const { activeTabId } = useSelector((state: RootState) => state.tree);
+  const {
+    clickedFile: { activeTabId },
+  } = useSelector((state: RootState) => state.tree);
   const dispatch = useDispatch();
 
   // ** Handlers:
   const onClick = () => {
     const { id, name, content } = file;
-    dispatch(setClickedFileAction({ filename: name, fileContent: content }));
-    dispatch(setActiveTabIdAction(id));
+    dispatch(
+      setClickedFileAction({
+        activeTabId: id,
+        filename: name,
+        fileContent: content,
+      })
+    );
   };
   return (
     <div
