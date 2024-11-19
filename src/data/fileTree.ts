@@ -36,7 +36,12 @@ export const fileTree: IFile = {
           isFolder: true,
           children: [
             { id: uuid(), name: "Button.tsx", isFolder: false },
-            { id: uuid(), name: "Button.tsx", isFolder: false },
+            {
+              id: uuid(),
+              name: "Button.tsx",
+              isFolder: false,
+              content: "Hello I'am a Button!",
+            },
           ],
         },
       ],
