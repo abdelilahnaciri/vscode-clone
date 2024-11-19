@@ -54,7 +54,7 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
             <span className="ml-2">{name}</span>
           </div>
         ) : (
-          <div className="flex items-center mr-2" onClick={onFileClicked}>
+          <div className="flex items-center ml-5" onClick={onFileClicked}>
             <RenderFileIcon filename={name} />
             <span className="ml-2">{name}</span>
           </div>
